@@ -12,6 +12,10 @@ export class DataService {
     return this.http.get("https://dummyjson.com/users/1");
   }
 
+  public getAllData() {
+    return this.http.get("https://dummyjson.com/users");
+  }
+
   public postData(){
     return 0;
   }
