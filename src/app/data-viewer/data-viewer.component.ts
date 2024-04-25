@@ -18,7 +18,7 @@ export class DataViewerComponent {
   }
 
   /**
-   * Get lastnames of the users
+   * Get the names of the users in alphabetic order 
    */
   fetchData() {
     this.dataService.getAllData().subscribe(response => {
@@ -38,5 +38,26 @@ export class DataViewerComponent {
   
       console.log(this.data.users)
     });
+  }
+
+  /**
+   * Save the names of the users in a json file to download
+   */
+  exportToJsonFile() {
+    const userNames = this.data.users.map(user => ({
+      lastName: user.lastName,
+      firstName: user.firstName
+    }));
+    const jsonData = JSON.stringify(userNames);
+    
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    
+    const anchor = document.createElement('a');
+    anchor.download = 'user_names.json';
+    anchor.href = url;
+    anchor.click();
+    
+    window.URL.revokeObjectURL(url);
   }
 }

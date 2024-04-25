@@ -1,17 +1,15 @@
-
-<!-- Display all the lastnames of the users -->
-<div *ngIf="data">
-    <h2>Liste des noms de famille des utilisateurs :</h2>
-    <ul>
-        <li *ngFor="let user of data.users">
+<!-- Display all the names of the users in  in alphabetical order -->
+<div *ngIf="data" class="container">
+    <h2 class="title">Noms des utilisateurs</h2>
+    <ol class="list-group">
+        <li *ngFor="let user of data.users" class="list-group-item">
             {{ user.lastName }} {{ user.firstName }} 
         </li>
-    </ul>
+    </ol>
+
+    <!-- Click to save the list of the names in a json file -->
+    <div class="text-center">
+        <button class="btn btn-success btn-custom" (click)="exportToJsonFile()">Exporter en JSON</button>
+    </div>
 </div>
-  
-  
-<!-- All data for all users
-<div *ngIf="data">
-    <pre>{{ data | json }}</pre>
-</div>
- -->
+
